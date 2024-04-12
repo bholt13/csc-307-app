@@ -21,6 +21,7 @@ function MyApp() {
       characterData={characters}
       removeCharacter={removeOneCharacter}
     />
+      <Form handleSubmit={updateList} />
   </div>
 );
     
