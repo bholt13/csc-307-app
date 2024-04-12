@@ -30,6 +30,7 @@ function TableBody(props) {
     </button>
   </td>
  </tr>
+  );
 }
 function Table(props) {
     return (
