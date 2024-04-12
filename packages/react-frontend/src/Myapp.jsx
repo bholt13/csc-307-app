@@ -12,6 +12,9 @@ function MyApp() {
     });
     setCharacters(updated);
   }
+  function updateList(person) {
+  setCharacters([...characters, person]);
+  }
   return (
   <div className="container">
     <Table
