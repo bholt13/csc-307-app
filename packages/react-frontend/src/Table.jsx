@@ -32,3 +32,11 @@ function TableBody() {
     </tbody>
   );
 }
+function Table() {
+    return (
+      <table>
+        <TableHeader />
+        <TableBody />
+      </table>
+    );
+}
