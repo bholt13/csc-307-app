@@ -38,15 +38,28 @@ const users = {
   ]
 };
 
-const addUser = (user) => {
-  users["users_list"].push(user);
-  return user;
+const generateRandomId = () => {
+  const alphanumeric = '0123456789';
+  let id = '';
+  for (let i = 0; i < 6; i++) {
+    id += alphanumeric.charAt(Math.floor(Math.random() * alphanumeric.length));
+  }
+  return id;
 };
+
+const addUser = (user) => {
+  const randomId = generateRandomId();
+  const newUser = { id: randomId, ...user };
+  users["users_list"].push(newUser);
+  return newUser;
+};
+
+
 
 app.post("/users", (req, res) => {
   const userToAdd = req.body;
-  addUser(userToAdd);
-  res.send();
+  const newUser = addUser(userToAdd);
+  res.status(201).send(newUser);
 });
 
 const deleteUserById = (userId) => {

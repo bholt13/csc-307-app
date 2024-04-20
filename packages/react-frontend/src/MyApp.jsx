@@ -6,12 +6,22 @@ import Form from "./Form";
 function MyApp() {
     const [characters, setCharacters] = useState([]);
     
-   function removeOneCharacter(index) {
-       const updated = characters.filter((character, i) => {
-      return i !== index;
-    });
-    setCharacters(updated);
-  }
+function removeOneCharacter(index, userId) {
+  const promise = fetch(`http://localhost:8000/users/${userId}`, { method: 'DELETE' });
+  
+  promise.then(response => {
+    if (response.ok) {
+      const updated = characters.filter((character, i) => i !== index);
+      setCharacters(updated);
+    } else if (response.status === 404) {
+      alert('User not found');
+    } else {
+      alert('Failed to delete user');
+    }
+  }).catch(error => {
+    alert('An error occurred while deleting user');
+  });
+}
 
   function updateList(person) { 
     postUser(person)
